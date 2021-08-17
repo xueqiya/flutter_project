@@ -122,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
     _loginRequest().then((v) {
       if (v.code == 200) {
         showToast('登录成功' + v.data.nikeName, context);
+        Navigator.pop(context);
         Navigator.pushNamed(context, 'main');
       } else {
         showToast(v.msg, context);
