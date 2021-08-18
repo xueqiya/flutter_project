@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/bean/login.dart';
 import 'package:flutter_project/common/toast.dart';
@@ -29,7 +28,19 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _children = [];
-    _children.add(Center(
+    _children.add(_mainView());
+    if (showLoading) {
+      _children.add(Loading());
+    }
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("登录"),
+        ),
+        body: Stack(children: _children));
+  }
+
+  Widget _mainView() {
+    return Center(
       child: ListView(
         padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 70.0),
         children: [
@@ -103,15 +114,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ],
       ),
-    ));
-    if (this.showLoading) {
-      _children.add(Loading());
-    }
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("登录"),
-        ),
-        body: Stack(children: _children));
+    );
   }
 
   void _login() {
@@ -140,14 +143,15 @@ class _LoginPageState extends State<LoginPage> {
       if (response.statusCode == 200) {
         return Login.fromJson(response.data);
       } else {
-        throw ("登录失败" + response.statusCode.toString());
+        throw (response.statusCode.toString());
       }
     } catch (e) {
+      showToast('登录失败' + e.toString(), context);
+      throw ("登录失败:" + e.toString());
+    } finally {
       setState(() {
         showLoading = false;
       });
-      showToast('登录失败' + e.toString(), context);
-      throw ("登录失败:" + e.toString());
     }
   }
 }
