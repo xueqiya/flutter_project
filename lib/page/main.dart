@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/page/login.dart';
+import 'package:flutter_project/page/home.dart';
+import 'package:flutter_project/page/mine.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -8,14 +9,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
-  List<Widget> pageWidgetList = [LoginPage(), LoginPage()];
+  List<Widget> pageWidgetList = [HomePage(), MinePage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("首页"),
-      ),
       body: pageWidgetList[_currentIndex],
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -31,12 +29,8 @@ class _MainPageState extends State<MainPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: new BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "首页"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: "我的"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "我的"),
         ],
         onTap: (flag) {
           _currentIndex = flag;

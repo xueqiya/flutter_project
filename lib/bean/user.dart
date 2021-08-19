@@ -1,11 +1,11 @@
-class Login {
+class User {
   int code;
   String msg;
   Data data;
 
-  Login({this.code, this.msg, this.data});
+  User({this.code, this.msg, this.data});
 
-  Login.fromJson(Map<String, dynamic> json) {
+  User.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     msg = json['msg'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
@@ -31,7 +31,14 @@ class Data {
   int age;
   int status;
 
-  Data({this.id, this.createdOn, this.modifiedOn, this.phone, this.nikeName, this.age, this.status});
+  Data(
+      {this.id,
+        this.createdOn,
+        this.modifiedOn,
+        this.phone,
+        this.nikeName,
+        this.age,
+        this.status});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];

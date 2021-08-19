@@ -16,8 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   // 控制器
-  final _unameController = TextEditingController();
-  final _pwdController = TextEditingController();
+  final _unameController = TextEditingController(text: "15516612373");
+  final _pwdController = TextEditingController(text: "111111");
 
   //焦点
   final _focusNode1 = FocusNode();
