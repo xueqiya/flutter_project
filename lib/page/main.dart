@@ -21,7 +21,7 @@ class _MainPageState extends State<MainPage> {
           color: Colors.grey,
         ),
         onPressed: () {
-          print("点击了 FloatingActionButton");
+          Navigator.pushNamed(context, 'publish');
         },
         backgroundColor: Colors.white,
         foregroundColor: Colors.grey,
